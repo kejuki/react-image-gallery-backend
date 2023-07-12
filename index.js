@@ -2,42 +2,50 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+const USERS = []
 const POSTS = []
 for(let i = 0; i<17; i++){
+  USERS.push({
+    userId: `userId${i}`,
+    username: `generateduser${i}`,
+    avatar: `dummyavatarurl`
+  })
+}
+for(let i = 0; i<17; i++){
   POSTS.push({
-    id: i, 
-    userId: `userid${i}`, 
-    author: `GeneratedUser${i}`, 
+    postId: i, 
+    userId: USERS[i].userId, 
+    author: USERS[i].username,
     timestamp: Date.now(), 
     imgurl:`dummyimgurl${i}`, 
     likes: i, 
     title: "kaupungil testaas testikuval",
     tags: ["kaupungil", "hengaas", "testtag"],
     comments: [{
-      userId: `userid${i}`,
-      commentId: i,
-      user: `user${i}`, 
+      userId: USERS[i].userId,
+      commentId: `commentid${i}`,
+      username: USERS[i].username,
       comment: "test 1",
       timestamp: Date.now()
     },
     {
-      userId: `userid${i+1}`,
+      userId: USERS[i].userId,
       commentId: `commentid${i}`,
-      user: `user${i}`, 
+      username: USERS[i].username, 
       comment: "test 2",
       timestamp: Date.now()
     },
     {
-      userId: `userid${i+2}`,
+      userId: USERS[i].userId,
       commentId: `commentid${i}`,
-      user: `user${i}`, 
+      username: USERS[i].username, 
       comment: "test 3",
       timestamp: Date.now()
     },
     {
-      userId: `userid${i+3}`,
+      userId: USERS[i].userId,
       commentId: `commentid${i}`,
-      user: `user${i}`, 
+      username: USERS[i].username, 
       comment: "test 4",
       timestamp: Date.now()
     }
