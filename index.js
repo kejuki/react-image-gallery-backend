@@ -8,7 +8,9 @@ for(let i = 0; i<17; i++){
   USERS.push({
     userId: `userId${i}`,
     username: `generateduser${i}`,
-    avatar: `dummyavatarurl`
+    realname: `real name${i}`,
+    description: `from finland like bikes`,
+    avatar: `dummyavatarurl`,
   })
 }
 for(let i = 0; i<17; i++){
@@ -66,6 +68,10 @@ app.get('/igposts/', paginatedResults(POSTS), (req, res) => {
 app.get('/igposts/:postid', (req, res) => {
 
   res.send(POSTS.get(req.params.postid))
+})
+
+app.get('/users/:userid', (req, res) => {
+  res.json(USERS.find(u => u.userId === req.params.userid))
 })
 
 function paginatedResults(model){
