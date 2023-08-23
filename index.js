@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const { randomUUID } = require('crypto')
 
 const USERS = []
 const POSTS = []
@@ -15,7 +16,7 @@ for(let i = 0; i<17; i++){
 }
 for(let i = 0; i<17; i++){
   POSTS.push({
-    postId: i, 
+    postId: randomUUID(), 
     userId: USERS[i].userId, 
     author: USERS[i].username,
     timestamp: Date.now(), 
@@ -55,7 +56,7 @@ for(let i = 0; i<17; i++){
 }
 for(let i = 0; i<17; i++){
   POSTS.push({
-    postId: i, 
+    postId: randomUUID(), 
     userId: "userId1", 
     author: USERS[i].username,
     timestamp: Date.now(), 
@@ -114,7 +115,7 @@ function paginatedResultsByUID(model){
   return (req, res, next) => {
     const filteredModel = model.filter(post => post.userId === req.params.userid)
     const page = parseInt(req.query.page)
-    const limit = 5
+    const limit = 12
 
     const startIndex = (page - 1) * limit
     const endIndex = page * limit
